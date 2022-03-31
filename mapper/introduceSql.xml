@@ -16,6 +16,27 @@
             ,  imgWidth
             ,  imgHeight            
         from bby_preinterview.portfolio
-    </select>    
+    </select> 
+    <insert id ="interviewInsert">
+        insert into
+            bby_preinterview.conent_interview(
+                subject
+                ,content
+                <if test="isimgSrc == '' && isimgSrc == null ">
+                ,imgSrc
+                ,imgidentity
+                </if>
+                ,data
+            )
+            value(
+                '제목자리'
+                ,'내용자리'
+                <if test="isimgSrc == '' && isimgSrc == null ">
+                ,'이미지경로'
+                ,'개발코드'
+                </if>
+                ,'개발코드'
+            );
+    </insert>   
 </mapper>
 
