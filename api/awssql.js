@@ -19,10 +19,16 @@ router.get('/', (req, res, next) =>{
 
     pool.getConnection(function(err, connection) {
         connection.query(
-            query,
+            query, //여기는 반드시 sql문이 들어와야 에러가 안남
             (error, result) => {
-                if(error) throw error;
-                res.send(result)
+                if(error) throw error; //result를 받지 못하는 상황
+                if(req.body.srud=='select'){
+                    res.send(result);//react한테 res.date를 주라
+                }else{
+                    res.send("succ"); //react한테 succ라는 문자를 주라
+                }
+                
+
             })       
         connection.release(); 
     }) 
