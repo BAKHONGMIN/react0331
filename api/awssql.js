@@ -12,7 +12,7 @@ mybatisMapper.createMapper(['./mapper/introduceSql.xml'])
 var format = { language : 'sql', indent : '  '}
 
 
-router.get('/', (req, res, next) =>{ 
+router.post('/', (req, res, next) =>{ 
     var params = req.body;
     var query = mybatisMapper.getStatement(
     params.mapper, params.mapper_id, params, format );
@@ -22,7 +22,7 @@ router.get('/', (req, res, next) =>{
             query, //여기는 반드시 sql문이 들어와야 에러가 안남
             (error, result) => {
                 if(error) throw error; //result를 받지 못하는 상황
-                if(req.body.srud=='select'){
+                if(req.body.crud=='select'){
                     res.send(result);//react한테 res.date를 주라
                 }else{
                     res.send("succ"); //react한테 succ라는 문자를 주라

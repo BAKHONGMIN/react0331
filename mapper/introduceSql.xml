@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="introduceSql">
+<mapper namespace="IntroduceSql">
     <select id="interview">
         select 
             *
         from bby_preinterview.conent_interview
     </select>
-    <select id="portfolio">
+    <insert id="interviewInsert">
         select 
             no
             ,  category
@@ -16,13 +16,13 @@
             ,  imgWidth
             ,  imgHeight            
         from bby_preinterview.portfolio
-    </select> 
-    <insert id ="interviewInsert">
+    </insert> 
+    <select id ="meetingArrange">
         insert into
             bby_preinterview.conent_interview(
                 subject
                 ,content
-                <if test="isimgSrc == '' && isimgSrc == null ">
+                <if test="isimgSrc != '' && isimgSrc != null ">
                 ,imgSrc
                 ,imgidentity
                 </if>
@@ -31,12 +31,23 @@
             value(
                 '제목자리'
                 ,'내용자리'
-                <if test="isimgSrc == '' && isimgSrc == null ">
+                <if test="isimgSrc != '' && isimgSrc != null ">
                 ,'이미지경로'
                 ,'개발코드'
                 </if>
                 ,'개발코드'
             );
-    </insert>   
+    </select>
+     <insert id="meetingArrangeInsert">
+        select 
+            no
+            ,  category
+            ,  subject
+            ,  content
+            ,  imgSrc
+            ,  imgWidth
+            ,  imgHeight            
+        from bby_preinterview.portfolio
+    </insert> 
 </mapper>
 

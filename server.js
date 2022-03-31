@@ -12,7 +12,7 @@ app.use('/introduce', sqlreqres);
 app.use('/prointerview', preinterview);
 
 app.set('port',8080)
-app.get('/', (req, res) =>{  res.send(' / 루트요청 있었음'); })
+app.post('/', (req, res) =>{  res.send(' / 루트요청 있었음'); })
 app.listen(app.get('port'), () =>{
     console.log('콘솔에서 시간으로 확인해보면 바로 알게됨');
 })
